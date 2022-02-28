@@ -9,7 +9,7 @@ Resources:
     Properties:
       PolicyDocument:
         Statement:
-          - Effecct: Allow
+          - Effecct: Deny
             Principal: "*"
             Action: 
               - s3:GetObject
