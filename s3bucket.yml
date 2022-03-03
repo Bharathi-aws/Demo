@@ -3,7 +3,7 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: PublicRead
-      BucketName: "jddemo1"
+      BucketName: #@bucketname@#
   MyS3BucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
