@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  'AWS::CloudFormation::Designer':
+    e64b97f6-88b9-46fa-9094-17d2b94ad636:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -293.38459396656253
+        'y': 80.95472261888472
+      z: 0
+Resources:
+  EC2I1ZS19:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      AvailabilityZone: us-east-1a
+      ImageId: ami-0c293f3f676ec4f90
+      InstanceType: t2.micro
+      KeyName: azuredevopscf
+      SecurityGroupIds:
+        -  !Ref  mySG
+      Tags:
+        - Key: 'Name'
+          Value: 'My EC2 Instance'
+        - Key: 'Owner'
+          Value: 'Bharathi'
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y # update existing packages
+          yum install -y httpd # install apache web server
+          systemctl start httpd
+          systemctl enable httpd
+          echo "Hello World" > /var/www/html/index.html
+  mySG:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Enable http(80) & ssh(22) access
+      GroupName: WebServer-SG
+      VpcId: vpc-05a2e0654e6fdff69
+      SecurityGroupIngress:
+        # allow http
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0 # any IP
+        # allow ssh  
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0 # only for demo else use your IP or corporate gateway IP
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: e64b97f6-88b9-46fa-9094-17d2b94ad636
