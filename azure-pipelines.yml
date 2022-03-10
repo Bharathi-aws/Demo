@@ -39,18 +39,6 @@ steps:
     enableTransforms: false
     useLegacyPattern: false
     enableTelemetry: true
-    
-variables:
-
-- group: ec2variables
-
-- name: AvailabilityZone
-
-  value: 'us-east-1a'
-
-- name: InstanceType
-
-  value: 't2.micro'
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
@@ -59,3 +47,10 @@ variables:
     stackName: 'simpleec2instance.yml'
     templateSource: 'file'
     templateFile: 'simpleec2instance.yml'
+
+variables:
+- group: ec2variables
+- name: AvailabilityZone
+  value: 'us-east-1a'
+- name: InstanceType
+  value: 't2.micro'
