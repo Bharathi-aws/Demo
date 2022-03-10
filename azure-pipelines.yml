@@ -56,6 +56,6 @@ variables:
   inputs:
     awsCredentials: 'AWS-Bharathiserviceconnection'
     regionName: 'us-east-1'
-    stackName: 'simpleec2withyaml'
+    stackName: 'simpleec2'
     templateSource: 'file'
     templateFile: 'simpleec2instance.yml'
