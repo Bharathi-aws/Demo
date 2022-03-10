@@ -39,3 +39,18 @@ steps:
     enableTransforms: false
     useLegacyPattern: false
     enableTelemetry: true
+    
+    variables:
+-   group: ec2variables
+-   name: AvailabilityZone
+    value: 'us-east-1a'
+-   name: InstanceType
+    value: 't2.micro'
+
+- task: CloudFormationCreateOrUpdateStack@1
+  inputs:
+    awsCredentials: 'AWS-Bharathiserviceconnection'
+    regionName: 'us-east-1'
+    stackName: 'simpleec2withyaml'
+    templateSource: 'file'
+    templateFile: 'simpleec2instance.yml'
