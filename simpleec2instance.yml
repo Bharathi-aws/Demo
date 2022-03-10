@@ -3,5 +3,5 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       AvailabilityZone: #@AvailabilityZone@#
-      ImageId: ami-033b95fb8079dc481
+      ImageId: ami-0e1d30f2c40c4c701
       InstanceType: #@InstanceType@#
