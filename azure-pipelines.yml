@@ -24,3 +24,18 @@ steps:
     artifact: 'Artifact2'
     publishLocation: 'pipeline'
 
+- task: replacetokens@5
+  inputs:
+    rootDirectory: '$(System.DefaultWorkingDirectory)/_Artifact2/Artifact2/s'
+    targetFiles: 'simpleec2instance.yml'
+    encoding: 'auto'
+    tokenPattern: 'custom'
+    tokenPrefix: '#@'
+    tokenSuffix: '@#'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    useLegacyPattern: false
+    enableTelemetry: true
