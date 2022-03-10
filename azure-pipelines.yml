@@ -40,12 +40,17 @@ steps:
     useLegacyPattern: false
     enableTelemetry: true
     
-    variables:
--   group: ec2variables
--   name: AvailabilityZone
-    value: 'us-east-1a'
--   name: InstanceType
-    value: 't2.micro'
+variables:
+
+- group: ec2variables
+
+- name: AvailabilityZone
+
+  value: 'us-east-1a'
+
+- name: InstanceType
+
+  value: 't2.micro'
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
