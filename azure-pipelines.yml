@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- main11
+- main
 
 pool:
   vmImage: ubuntu-latest
@@ -24,21 +24,6 @@ steps:
     artifact: 'Artifact2'
     publishLocation: 'pipeline'
 
-- task: replacetokens@5
-  inputs:
-    rootDirectory: '$(System.DefaultWorkingDirectory)/_Artifact2/Artifact2/s'
-    targetFiles: 'simpleec2instance.yml'
-    encoding: 'auto'
-    tokenPattern: 'custom'
-    tokenPrefix: '#@'
-    tokenSuffix: '@#'
-    writeBOM: true
-    actionOnMissing: 'warn'
-    keepToken: false
-    actionOnNoFiles: 'continue'
-    enableTransforms: false
-    useLegacyPattern: false
-    enableTelemetry: true
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
@@ -48,9 +33,3 @@ steps:
     templateSource: 'file'
     templateFile: 'simpleec2instance.yml'
 
-variables:
-- group: ec2variables
-- name: AvailabilityZone
-  value: 'us-east-1a'
-- name: InstanceType
-  value: 't2.micro'
